@@ -7,13 +7,24 @@ const [state, dispatch] = useReducer(todoReducer, initialState);
 
 const [newTodo, setNewTodo] = useState('');
 
+// const [deleted, setDeleted] = useState('');
+
 const handleChanges = e => {
     setNewTodo(e.target.value)
 }
 
 const addNewTodo = e => {
-    dispatch({ type: "ADD_TODO", payload: newTodo })
+    dispatch({ type: "ADD_TODO", 
+    payload: 
+    {item: {newTodo},
+    completed: false,
+id: Math.random() * 10000} 
+})
 }
+
+// const deleteTodo = e => {
+//     dispatch ({ type: "DELETE_TODO", payload: true })
+// }
 
 return (
    <div>
@@ -25,31 +36,39 @@ return (
            onChange = {handleChanges}
            />
     
-           <button onClick={addNewTodo}>Submit</button>
+           <button onClick={() => dispatch({ type: "ADD_TODO", 
+           payload: 
+
+           {item: newTodo,
+            completed: false,
+            id: Math.random() * 10000} 
+            
+            })
+        }>Submit</button>
+           
     </div>  
  <div> 
      
-     {console.log(state)}
- {
- 
- !state.completed ? (
-     <div>{state.item} <button>Completed</button> 
-</div>
+     {console.log(state)};
 
- )
-    : (
-        <div>bla</div>
-    )
- 
- }
+     {
+     state.map((e) => !e.completed ? 
+     ( <div>{e.item} 
+     < button onClick={() => dispatch({ type: "DELETE_TODO", payload: true})} > Done </button>
+      </div>
+     
+     )
+     : 
+     (<div>d</div>)
+     )
+     }
  
  </div>
 
    </div>
     
-)
-
-}
+);
+};
 
 
 export default Todo

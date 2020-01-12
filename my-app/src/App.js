@@ -11,3 +11,19 @@ function App() {
 }
 
 export default App;
+
+
+
+// {
+ 
+//   !state.completed ? (
+//       <div>{state.item} <button>Completed</button> 
+//  </div>
+ 
+//   )
+//      : (
+//          <div>bla</div>
+//      )
+  
+//   }
+  
